@@ -4,15 +4,10 @@ namespace RadioactivityMonitorTests;
 
 public class AlarmTest
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
 
     [Test]
     public void GivenMeasurementBelowThreshold_ThenAlarmIsSet()
     {
-      
         var alarm = new Alarm();
         alarm.SensorMeasurement = () => 15;
         
@@ -24,7 +19,6 @@ public class AlarmTest
     [Test]
     public void GivenMeasurementAboveThreshold_ThenAlarmIsSet()
     {
-
         var alarm = new Alarm();
         alarm.SensorMeasurement = () => 30;
         
@@ -33,5 +27,14 @@ public class AlarmTest
         Assert.IsTrue(alarm.AlarmOn);
     }
     
-    
+    [Test]
+    public void GivenMeasurementIsWithinThreshold_ThenAlarmIsNotSet()
+    {
+        var alarm = new Alarm();
+        alarm.SensorMeasurement = () => 20;
+        
+        alarm.Check();
+
+        Assert.IsFalse(alarm.AlarmOn);
+    }
 }
