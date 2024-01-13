@@ -12,8 +12,9 @@ public class AlarmTest
     [Test]
     public void GivenMeasurementBelowThreshold_ThenAlarmIsSet()
     {
-        MockLowMeasureSensor mockSensor = new MockLowMeasureSensor();
-        var alarm = new Alarm(mockSensor);
+      
+        var alarm = new Alarm();
+        alarm.SensorMeasurement = () => 15;
         
         alarm.Check();
 
@@ -23,11 +24,14 @@ public class AlarmTest
     [Test]
     public void GivenMeasurementAboveThreshold_ThenAlarmIsSet()
     {
-        MockHighMeasureSensor mockSensor = new MockHighMeasureSensor();
-        var alarm = new Alarm(mockSensor);
+
+        var alarm = new Alarm();
+        alarm.SensorMeasurement = () => 30;
         
         alarm.Check();
 
         Assert.IsTrue(alarm.AlarmOn);
     }
+    
+    
 }
