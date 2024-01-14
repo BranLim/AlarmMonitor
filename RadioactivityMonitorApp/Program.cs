@@ -18,13 +18,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+var url = builder.Configuration.GetValue<string>("AppSettings:Url") ?? "http://localhost:8080";
+app.Urls.Add(url);
+
 app.MapGet("/api/alarms", (Alarm alarm) =>
     {
         alarm.Check();
         return Results.Ok(new AlarmDto(alarm.AlarmOn, alarm.AlarmCount));
     })
-    .WithName("GetRadioactivity")
+    .WithName("GetRadioactivityAlarm")
     .WithOpenApi();
 
 app.Run();

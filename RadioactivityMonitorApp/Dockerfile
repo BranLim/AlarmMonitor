@@ -8,6 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["RadioactivityMonitorApp/RadioactivityMonitorApp.csproj", "RadioactivityMonitorApp/"]
+COPY ["RadioactivityMonitor/RadioactivityMonitor.csproj", "RadioactivityMonitorApp/"]
 RUN dotnet restore "RadioactivityMonitorApp/RadioactivityMonitorApp.csproj"
 COPY . .
 WORKDIR "/src/RadioactivityMonitorApp"

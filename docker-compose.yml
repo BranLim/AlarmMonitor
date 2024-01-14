@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+    web:
+      build: 
+        dockerfile: RadioactivityMonitorApp/Dockerfile
+      ports:
+        - "8080:8080"
