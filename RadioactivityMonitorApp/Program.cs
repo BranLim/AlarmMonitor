@@ -1,4 +1,5 @@
 using RadioactivityMonitor;
+using RadioactivityMonitorApp.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -17,11 +19,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+var alarm = new Alarm();
 app.MapGet("/api/alarm", () =>
     {
-        var alarm = new Alarm();
+        
         alarm.Check();
-        return alarm.AlarmOn;
+        return new AlarmDto(alarm.AlarmOn, alarm.AlarmCount);
     })
     .WithName("GetRadioactivity")
     .WithOpenApi();

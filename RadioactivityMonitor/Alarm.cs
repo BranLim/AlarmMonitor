@@ -15,6 +15,8 @@ namespace RadioactivityMonitor
             get { return _alarmOn; }
         }
 
+        public long AlarmCount => _alarmCount;
+
         public void Check()
         {
             double value = SensorMeasurement.Invoke();
