@@ -1,6 +1,6 @@
 @RadioactivityMonitorApp_HostAddress = http://localhost:5065
 
-GET {{RadioactivityMonitorApp_HostAddress}}/weatherforecast/
+GET {{RadioactivityMonitorApp_HostAddress}}/api/alarms
 Accept: application/json
 
 ###

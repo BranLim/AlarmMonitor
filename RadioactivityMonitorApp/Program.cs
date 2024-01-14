@@ -5,11 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSingleton(new Alarm());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -19,12 +19,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-var alarm = new Alarm();
-app.MapGet("/api/alarm", () =>
+app.MapGet("/api/alarms", (Alarm alarm) =>
     {
-        
         alarm.Check();
-        return new AlarmDto(alarm.AlarmOn, alarm.AlarmCount);
+        return Results.Ok(new AlarmDto(alarm.AlarmOn, alarm.AlarmCount));
     })
     .WithName("GetRadioactivity")
     .WithOpenApi();
