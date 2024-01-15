@@ -2,8 +2,8 @@ namespace RadioactivityMonitor
 {
     public class Alarm
     {
-        private const double LowThreshold = 17;
-        private const double HighThreshold = 21;
+        public const double LowThreshold = 17;
+        public const double HighThreshold = 21;
 
         bool _alarmOn = false;
         private long _alarmCount = 0;
