@@ -9,7 +9,7 @@ namespace RadioactivityMonitor
         private long _alarmCount = 0;
 
         public Func<double> SensorMeasurement { get; set; } = () => new Sensor().NextMeasure();
-
+        
         public bool AlarmOn
         {
             get { return _alarmOn; }

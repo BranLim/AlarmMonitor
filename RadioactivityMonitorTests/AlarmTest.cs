@@ -14,7 +14,6 @@ public class AlarmTest
         Assert.IsTrue(alarm.AlarmOn, "Alarm should be true but received false");
     }
 
-
     [Test]
     public void GivenMeasurementAboveThreshold_ThenAlarmIsSet()
     {
@@ -24,8 +23,7 @@ public class AlarmTest
 
         Assert.IsTrue(alarm.AlarmOn, "Alarm should be true but received false");
     }
-
-
+    
     [Test]
     public void GivenMeasurementIsWithinThreshold_ThenAlarmIsNotSet()
     {
